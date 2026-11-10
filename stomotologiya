@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Klinika nomi] — Stomatologiya klinikasi</title>
+<meta name="description" content="Tish davolash, implantatsiya, breketlar, oqartirish va protezlash. Bepul konsultatsiyaga onlayn yoziling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+  // ============ SOZLAMALAR ============
+  // 1) Meta Pixel ID ni shu yerga yozing (masalan: "1234567890123456"). Bo'sh qolsa Pixel ishlamaydi.
+  var PIXEL_ID = "";
+  // 2) Arizalar yuboriladigan manzil (Make.com / Google Apps Script / Cloudflare Worker webhook).
+  //    Bo'sh qolsa forma faqat "Rahmat" xabarini ko'rsatadi, ma'lumot hech qayerga ketmaydi.
+  //    DIQQAT: bu yerga CRM yoki Telegram bot tokenini YOZMANG — sayt kodi hammaga ochiq.
+  var WEBHOOK_URL = "";
+  // ====================================
+
+  if (PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+</script>
+
+<style>
+  :root{--accent:#22C55E;--accent-soft:#4ADE80;--bg:#0A0D0B;--bg2:#0F1411;--card:#111613;--line:#1E2621;--line2:#2A332D;--muted:#A9B4AD;--text:#E8EDE9;--green-bg:#0F1A13;--green-line:#1F3A2A}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent-soft);text-decoration:none}a:hover{color:#86EFAC}
+  h1,h2,h3{color:#fff;margin:0}
+  p{margin:0}
+  .wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+  .alt{background:var(--bg2);border-top:1px solid #1A211C;border-bottom:1px solid #1A211C}
+  .sec{padding-top:96px;padding-bottom:96px}
+  .eyebrow{color:var(--accent-soft);font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .h2{font-size:clamp(30px,4vw,46px);line-height:1.15;font-weight:800;letter-spacing:-.03em}
+  .lead{font-size:18px;line-height:1.65;color:var(--muted)}
+  .stack{display:flex;flex-direction:column;gap:16px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:18px 28px;border-radius:14px;font-size:17px;font-weight:700}
+  .btn-primary{background:var(--accent);color:var(--bg)}.btn-primary:hover{color:var(--bg);filter:brightness(1.08)}
+  .btn-ghost{border:1px solid var(--line2);color:var(--text)}.btn-ghost:hover{color:#fff;border-color:#3A463E}
+
+  header .wrap{padding-top:24px;padding-bottom:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+  .logo{display:flex;align-items:center;gap:12px;color:#fff;font-size:20px;font-weight:800;letter-spacing:-.02em}.logo:hover{color:#fff}
+  .logo-mark{width:40px;height:40px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+  nav{display:flex;flex-wrap:wrap;align-items:center;gap:28px;font-size:15px;font-weight:600}
+  nav a{color:#C3CCC6}
+  nav .nav-cta{padding:12px 20px;border-radius:999px;background:var(--accent);color:var(--bg);font-weight:700}nav .nav-cta:hover{color:var(--bg)}
+
+  .hero{padding-top:72px;padding-bottom:96px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:56px;align-items:center}
+  .badge{align-self:flex-start;padding:8px 14px;border-radius:999px;border:1px solid var(--green-line);background:var(--green-bg);color:var(--accent-soft);font-size:14px;font-weight:600}
+  .hero h1{font-size:clamp(38px,5.5vw,68px);line-height:1.05;font-weight:800;letter-spacing:-.035em}
+  .hero h1 span{color:var(--accent-soft)}
+  .hero-text{display:flex;flex-direction:column;gap:28px}
+  .hero-text p{font-size:19px;line-height:1.6;color:var(--muted);max-width:520px}
+  .btns{display:flex;flex-wrap:wrap;gap:14px}
+  .hero-card{border-radius:28px;background:var(--card);border:1px solid var(--line);min-height:440px;padding:32px;display:flex;flex-direction:column;gap:24px}
+  .photo{flex-grow:1;border-radius:20px;background:#0C110E;border:1px dashed #2C3B31;display:flex;align-items:center;justify-content:center;color:#6B776F;font-size:15px;min-height:260px;text-align:center;padding:16px;overflow:hidden}
+  .photo img{width:100%;height:100%;object-fit:cover;border-radius:20px}
+  .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .stat{padding:18px;border-radius:16px;background:var(--green-bg);border:1px solid var(--green-line)}
+  .stat b{display:block;font-size:24px;font-weight:800;color:var(--accent-soft)}
+  .stat span{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+
+  .grid{display:grid;gap:20px}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+  .card{padding:28px;border-radius:20px;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
+  .card .num{width:48px;height:48px;border-radius:14px;background:var(--green-bg);border:1px solid var(--green-line);display:flex;align-items:center;justify-content:center;color:var(--accent-soft);font-weight:800;font-size:18px}
+  .card h3{font-size:20px;font-weight:700}
+  .card p{font-size:16px;line-height:1.6;color:var(--muted)}
+  .svc{background:var(--card);border-radius:22px;padding:30px}
+  .svc-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .svc-top span{font-size:13px;color:#6B776F;font-weight:700}
+  .svc .price{margin-top:auto;padding-top:8px;font-size:15px;font-weight:600;color:var(--accent-soft)}
+  .sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px}
+
+  .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:56px}
+  .tip{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:16px;background:var(--bg);border:1px solid var(--line);font-size:17px;line-height:1.5}
+  .check{flex-shrink:0;width:28px;height:28px;border-radius:999px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+
+  .book{border-radius:32px;background:var(--green-bg);border:1px solid var(--green-line);padding:clamp(24px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:48px;align-items:start}
+  .contacts{display:flex;flex-direction:column;gap:12px;margin-top:8px;font-size:16px;color:#C3CCC6}
+  .form-box{padding:32px;border-radius:24px;background:var(--bg);border:1px solid var(--line)}
+  form{display:flex;flex-direction:column;gap:20px}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field label{font-size:15px;font-weight:600}
+  .row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  input,select{height:54px;padding:0 16px;border-radius:14px;border:1px solid var(--line2);background:var(--card);color:#fff;font-size:16px;font-family:inherit;width:100%;color-scheme:dark}
+  input::placeholder{color:#6B776F}
+  input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+  .error{font-size:15px;color:#FCA5A5;min-height:0}
+  .error:empty{display:none}
+  .submit{height:58px;border:0;border-radius:14px;background:var(--accent);color:var(--bg);font-family:inherit;font-size:17px;font-weight:800;cursor:pointer}
+  .submit:hover{filter:brightness(1.08)}
+  .submit:disabled{opacity:.6;cursor:wait}
+  .note{font-size:13px;color:#8A968E;text-align:center}
+  .done{display:none;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:40px 8px}
+  .done.show{display:flex}
+  .done h3{font-size:26px;font-weight:800}
+  .done p{font-size:16px;line-height:1.6;color:var(--muted)}
+  .again{margin-top:8px;height:48px;padding:0 22px;border-radius:12px;border:1px solid var(--line2);background:transparent;color:var(--text);font-family:inherit;font-size:15px;font-weight:600;cursor:pointer}
+
+  footer{border-top:1px solid #1A211C}
+  footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:14px;color:#8A968E}
+
+  @media (max-width:640px){
+    nav{gap:16px}
+    nav a:not(.nav-cta){display:none}
+    .sec{padding-top:64px;padding-bottom:64px}
+    .hero{padding-top:32px;padding-bottom:64px;gap:36px}
+    .hero-card{min-height:0;padding:20px}
+    .form-box{padding:20px}
+    .row2{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="#top" class="logo">
+      <span class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A0D0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3c-2.5 0-4 2-4 4.5 0 3 1.5 5 2 8 .4 2.6 1 5.5 2.5 5.5s1.8-3 2.5-5.5c.3-1 .8-1.5 2-1.5s1.7.5 2 1.5c.7 2.5 1 5.5 2.5 5.5s2.1-2.9 2.5-5.5c.5-3 2-5 2-8C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/></svg>
+      </span>
+      [Klinika nomi]
+    </a>
+    <nav>
+      <a href="#about">Klinika haqida</a>
+      <a href="#services">Xizmatlar</a>
+      <a href="#tips">Maslahatlar</a>
+      <a href="#booking" class="nav-cta">Konsultatsiyaga yozilish</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section id="top" class="wrap hero">
+  <div class="hero-text">
+    <span class="badge">Zamonaviy stomatologiya klinikasi</span>
+    <h1>Sog'lom tishlar —<br><span>ishonchli tabassum</span></h1>
+    <p>Davolash, implantatsiya, breketlar va tish oqartirish — barchasi bir joyda. Tajribali shifokorlar, steril sharoit va og'riqsiz muolaja.</p>
+    <div class="btns">
+      <a href="#booking" class="btn btn-primary">Bepul konsultatsiya</a>
+      <a href="#services" class="btn btn-ghost">Xizmatlarni ko'rish</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <!-- Surat qo'yish uchun: rasmni repozitoriyga yuklang va quyidagi qatorni <img src="rasm.jpg" alt="Klinika"> bilan almashtiring -->
+    <div class="photo">[Klinika yoki shifokor surati]</div>
+    <div class="stats">
+      <div class="stat"><b>[X]+ yil</b><span>tajriba</span></div>
+      <div class="stat"><b>[X] 000+</b><span>mamnun bemorlar</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="alt">
+  <div class="wrap sec">
+    <div class="stack" style="max-width:720px;margin-bottom:48px">
+      <span class="eyebrow">Klinika haqida</span>
+      <h2 class="h2">Nega bemorlar bizni tanlashadi?</h2>
+      <p class="lead">Biz har bir bemorga individual yondashamiz: avval to'liq tashxis, so'ng aniq davolash rejasi va narxi oldindan kelishiladi. Hech qanday kutilmagan to'lovlarsiz.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card"><span class="num">01</span><h3>Tajribali shifokorlar</h3><p>Terapevt, ortodont, implantolog va jarroh — har bir yo'nalish bo'yicha mutaxassis.</p></div>
+      <div class="card"><span class="num">02</span><h3>Og'riqsiz davolash</h3><p>Zamonaviy anesteziya vositalari bilan muolaja qo'rquvsiz va qulay o'tadi.</p></div>
+      <div class="card"><span class="num">03</span><h3>To'liq sterillik</h3><p>Barcha asboblar avtoklavda sterilizatsiya qilinadi, bir martalik materiallar ishlatiladi.</p></div>
+      <div class="card"><span class="num">04</span><h3>Aniq tashxis</h3><p>Raqamli rentgen yordamida muammo aniqlanadi va davolash rejasi tuziladi.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="wrap sec">
+  <div class="sec-head">
+    <div class="stack" style="max-width:640px">
+      <span class="eyebrow">Xizmatlar</span>
+      <h2 class="h2">Stomatologik xizmatlarimiz</h2>
+    </div>
+    <a href="#booking" style="font-size:16px;font-weight:700">Narxni bilish uchun yoziling →</a>
+  </div>
+  <div class="grid g3">
+    <div class="card svc"><div class="svc-top"><h3>Tish davolash</h3><span>01</span></div><p>Karies va pulpitni davolash, zamonaviy fotopolimer plombalar qo'yish.</p><span class="price">[NARX] so'mdan</span></div>
+    <div class="card svc"><div class="svc-top"><h3>Implantatsiya</h3><span>02</span></div><p>Yo'qotilgan tishni ildizi bilan tiklash — tabiiy ko'rinish va uzoq xizmat muddati.</p><span class="price">[NARX] so'mdan</span></div>
+    <div class="card svc"><div class="svc-top"><h3>Breketlar va ortodontiya</h3><span>03</span></div><p>Tish qatorini tekislash va prikusni to'g'rilash, bolalar va kattalar uchun.</p><span class="price">[NARX] so'mdan</span></div>
+    <div class="card svc"><div class="svc-top"><h3>Tish oqartirish</h3><span>04</span></div><p>Emalga zarar yetkazmasdan tishlarni bir necha ton oqartirish.</p><span class="price">[NARX] so'mdan</span></div>
+    <div class="card svc"><div class="svc-top"><h3>Professional tozalash</h3><span>05</span></div><p>Ultratovush bilan tish toshi va karashni olib tashlash, polirovka.</p><span class="price">[NARX] so'mdan</span></div>
+    <div class="card svc"><div class="svc-top"><h3>Protezlash</h3><span>06</span></div><p>Koronka, vinir va protezlar — chaynash funksiyasi va estetikani tiklash.</p><span class="price">[NARX] so'mdan</span></div>
+  </div>
+</section>
+
+<section id="tips" class="alt">
+  <div class="wrap sec tips">
+    <div class="stack">
+      <span class="eyebrow">Foydali ma'lumot</span>
+      <h2 class="h2">Qachon stomatologga borish kerak?</h2>
+      <p class="lead">Shifokorlar og'riq bo'lmasa ham har 6 oyda profilaktik ko'rikdan o'tishni tavsiya qiladi. Kariesni erta bosqichda davolash ancha oson va arzon.</p>
+    </div>
+    <div class="stack" style="gap:14px">
+      <div class="tip"><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0D0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Tish sovuq yoki issiqqa sezgir bo'lib qolgan bo'lsa</div>
+      <div class="tip"><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0D0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Milk qonasa yoki shishgan bo'lsa</div>
+      <div class="tip"><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0D0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Og'izdan doimiy yoqimsiz hid kelsa</div>
+      <div class="tip"><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0D0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Tishda qora dog' yoki darz paydo bo'lgan bo'lsa</div>
+      <div class="tip"><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0D0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Oxirgi ko'rikdan 6 oydan ko'p vaqt o'tgan bo'lsa</div>
+    </div>
+  </div>
+</section>
+
+<section id="booking" class="wrap sec">
+  <div class="book">
+    <div class="stack" style="gap:20px">
+      <span class="eyebrow">Onlayn yozilish</span>
+      <h2 class="h2">Konsultatsiyaga yoziling</h2>
+      <p class="lead">Ma'lumotlaringizni qoldiring — administratorimiz 15 daqiqa ichida qo'ng'iroq qilib, vaqtni tasdiqlaydi.</p>
+      <div class="contacts">
+        <span>Manzil: [MANZIL]</span>
+        <span>Telefon: <a href="tel:+998000000000">[TELEFON RAQAM]</a></span>
+        <span>Ish vaqti: [DU–SH, 09:00–19:00]</span>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <form id="lead-form" novalidate>
+        <div class="field">
+          <label for="f-name">Ismingiz</label>
+          <input id="f-name" name="name" type="text" placeholder="Masalan: Aziza" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-phone">Telefon raqam</label>
+          <input id="f-phone" name="phone" type="tel" placeholder="+998 __ ___ __ __" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="f-date">Qachon kelasiz?</label>
+            <input id="f-date" name="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="f-time">Vaqt</label>
+            <select id="f-time" name="time" required>
+              <option value="">Tanlang</option>
+              <option value="09:00–11:00">09:00–11:00</option>
+              <option value="11:00–13:00">11:00–13:00</option>
+              <option value="14:00–16:00">14:00–16:00</option>
+              <option value="16:00–19:00">16:00–19:00</option>
+            </select>
+          </div>
+        </div>
+        <p class="error" id="f-error" role="alert"></p>
+        <button type="submit" class="submit" id="f-submit">Konsultatsiyaga yozilish</button>
+        <p class="note">Tugmani bosish orqali ma'lumotlaringizni qayta ishlashga rozilik bildirasiz.</p>
+      </form>
+
+      <div class="done" id="f-done">
+        <span class="check" style="width:64px;height:64px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0A0D0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>
+        <h3 id="d-title">Rahmat!</h3>
+        <p id="d-text">Arizangiz qabul qilindi.</p>
+        <button type="button" class="again" id="f-again">Yangi ariza</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 [Klinika nomi]. Barcha huquqlar himoyalangan.</span>
+    <span>[MANZIL] · [TELEFON RAQAM]</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('lead-form');
+  var err = document.getElementById('f-error');
+  var btn = document.getElementById('f-submit');
+  var done = document.getElementById('f-done');
+  var dateInput = document.getElementById('f-date');
+
+  // Bugundan oldingi sanani tanlab bo'lmaydi
+  var t = new Date();
+  dateInput.min = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
+
+  // UTM belgilarini olish (lead qayerdan kelganini bilish uchun)
+  var q = new URLSearchParams(location.search);
+  var utm = {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+    if (q.get(k)) utm[k] = q.get(k);
+  });
+
+  form.addEventListener('input', function () { err.textContent = ''; });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = {
+      name: form.name.value.trim(),
+      phone: form.phone.value.trim(),
+      date: form.date.value,
+      time: form.time.value
+    };
+    var digits = data.phone.replace(/\D/g, '');
+    if (!data.name) return (err.textContent = 'Iltimos, ismingizni kiriting.');
+    if (digits.length < 9) return (err.textContent = "Telefon raqamni to'liq kiriting.");
+    if (!data.date) return (err.textContent = 'Kelish sanasini tanlang.');
+    if (!data.time) return (err.textContent = 'Qulay vaqtni tanlang.');
+
+    var payload = Object.assign({}, data, utm, {
+      page: location.href,
+      created_at: new Date().toISOString()
+    });
+
+    btn.disabled = true;
+    btn.textContent = 'Yuborilmoqda...';
+
+    var send = WEBHOOK_URL
+      ? fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        })
+      : Promise.resolve();
+
+    send.then(function () {
+      if (window.fbq) fbq('track', 'Lead');
+      showDone(data);
+    }).catch(function () {
+      err.textContent = "Xatolik yuz berdi. Iltimos, qayta urinib ko'ring yoki bizga qo'ng'iroq qiling.";
+    }).finally(function () {
+      btn.disabled = false;
+      btn.textContent = 'Konsultatsiyaga yozilish';
+    });
+  });
+
+  function showDone(d) {
+    document.getElementById('d-title').textContent = 'Rahmat, ' + d.name + '!';
+    document.getElementById('d-text').textContent =
+      'Arizangiz qabul qilindi: ' + d.date + ', ' + d.time + '. Tez orada ' + d.phone + " raqamiga qo'ng'iroq qilamiz.";
+    form.style.display = 'none';
+    done.classList.add('show');
+  }
+
+  document.getElementById('f-again').addEventListener('click', function () {
+    form.reset();
+    done.classList.remove('show');
+    form.style.display = '';
+  });
+})();
+</script>
+</body>
+</html>
